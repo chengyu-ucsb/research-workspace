@@ -1,4 +1,5 @@
 import {database} from '@/db/store';
+import {getWorkspaceAccess} from '@/lib/access';
 import {projectSchema} from '@/lib/projects';
 export const dynamic='force-dynamic';
 const reply=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store'}});
@@ -7,6 +8,7 @@ export async function GET(){try{const rows=await database().prepare('SELECT data
 export async function PUT(request:Request){
  if(!sameOrigin(request))return reply({error:'Request origin not allowed.'},403);
  try{
+  const access=await getWorkspaceAccess();if(!access.canEdit)return reply({error:'Only the workspace owner can edit projects.'},access.signedIn?403:401);
   const raw=await request.text();if(raw.length>150000)return reply({error:'This project is too large.'},413);
   let input:unknown;try{input=JSON.parse(raw);}catch{return reply({error:'Invalid project data.'},400);}
   const parsed=projectSchema.safeParse(input);if(!parsed.success)return reply({error:parsed.error.issues[0].message},400);
@@ -20,7 +22,8 @@ export async function PUT(request:Request){
 }
 export async function DELETE(request:Request){
  if(!sameOrigin(request))return reply({error:'Request origin not allowed.'},403);
- try{const u=new URL(request.url),id=u.searchParams.get('id'),version=Number(u.searchParams.get('version'));if(!id||!Number.isInteger(version)||version<1)return reply({error:'Invalid project.'},400);
+ try{const access=await getWorkspaceAccess();if(!access.canEdit)return reply({error:'Only the workspace owner can edit projects.'},access.signedIn?403:401);
+ const u=new URL(request.url),id=u.searchParams.get('id'),version=Number(u.searchParams.get('version'));if(!id||!Number.isInteger(version)||version<1)return reply({error:'Invalid project.'},400);
  const result=await database().prepare('DELETE FROM projects WHERE id=? AND version=?').bind(id,version).run();if(!result.meta.changes)return reply({error:'This project changed. Refresh before deleting.'},409);return reply({deleted:id});
  }catch(e){console.error('Delete project',e);return reply({error:'Could not delete. Please retry.'},503);}
 }
