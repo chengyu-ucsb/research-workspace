@@ -1,0 +1,35 @@
+import { createRequire } from 'node:module';
+import { dirname, resolve } from 'node:path';
+import { readFile, readdir } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const require=createRequire(import.meta.url);
+const wranglerRequire=createRequire(require.resolve('wrangler/package.json'));
+const { Miniflare }=wranglerRequire('miniflare');
+const files=(await readdir('dist/server',{recursive:true})).filter(p=>p.endsWith('.js')||p.endsWith('.mjs'));
+const modules=['index.js',...files.filter(p=>p!=='index.js')].map(p=>({type:'ESModule',path:resolve('dist/server',p)}));
+const mf=new Miniflare({modules,modulesRoot:resolve('dist/server'),compatibilityDate:'2026-05-15',compatibilityFlags:['nodejs_compat'],d1Databases:['DB']});
+try{
+ const db=await mf.getD1Database('DB');
+ const migration=await readFile('drizzle/0000_omniscient_ben_urich.sql','utf8');
+ await db.prepare(migration).run();
+ const call=async(method,body,query='')=>{const r=await mf.dispatchFetch('http://workspace.test/api/projects'+query,{method,headers:{'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});return {status:r.status,data:await r.json()};};
+ assert.equal((await call('GET')).data.projects.length,0);
+ const p={id:crypto.randomUUID(),title:'Verification project',phase:'ideation',step:'Research question',state:'active',priority:'Normal',question:'A test question',collaborators:'',nextAction:'Draft an outline',due:'2026-10-20',journal:'',notes:'Saved notes',tasks:[{id:crypto.randomUUID(),title:'Outline',due:'2026-10-18',done:false}],version:0,updatedAt:''};
+ let r=await call('PUT',p);assert.equal(r.status,200,JSON.stringify(r.data));assert.equal(r.data.project.version,1);let saved=r.data.project;
+ assert.equal((await call('GET')).data.projects[0].notes,'Saved notes');
+ assert.equal((await call('PUT',p)).status,409);
+ r=await call('PUT',{...saved,phase:'writing',step:'Full draft',tasks:saved.tasks.map(t=>({...t,done:true}))});assert.equal(r.status,200);saved=r.data.project;
+ assert.equal((await call('GET')).data.projects[0].tasks[0].done,true);
+ assert.equal((await call('PUT',{...saved,due:'2026-02-31'})).status,400);
+ assert.equal((await call('PUT',{...saved,phase:'publication',step:'Full draft'})).status,400);
+ assert.equal((await call('PUT',{...saved,state:'published'})).status,400);
+ r=await call('PUT',{...saved,state:'published',phase:'publication',step:'Published'});assert.equal(r.status,200);saved=r.data.project;
+ r=await call('PUT',{...saved,state:'archived'});assert.equal(r.status,200);saved=r.data.project;
+ r=await call('PUT',{...saved,state:'active',step:'Preparing submission'});assert.equal(r.status,200);saved=r.data.project;
+ const crossOrigin=await mf.dispatchFetch('http://workspace.test/api/projects',{method:'PUT',headers:{Origin:'https://unrelated.test','Content-Type':'application/json'},body:JSON.stringify(saved)});assert.equal(crossOrigin.status,403);
+ assert.equal((await call('DELETE',null,`?id=${p.id}&version=1`)).status,409);
+ assert.equal((await call('DELETE',null,`?id=${p.id}&version=${saved.version}`)).status,200);
+ assert.equal((await call('GET')).data.projects.length,0);
+ const page=await mf.dispatchFetch('http://workspace.test/');assert.equal(page.status,200);const html=await page.text();assert(html.includes('Your research pipeline'));assert(html.includes('Research Workspace'));
+ console.log('Verified: page render; create and read; persisted edits; phase moves; milestones; invalid data; stale edits; publication; archive and restore; cross-origin writes; versioned deletion.');
+}finally{await mf.dispose();}
