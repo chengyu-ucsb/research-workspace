@@ -1,0 +1,40 @@
+{
+  "condition_id": "P3-A1",
+  "items": [
+    {
+      "item_number": 1,
+      "text": "In this team, I can acknowledge a mistake without fear of humiliation.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 2,
+      "text": "In this team, I can raise a concern without others thinking less of me.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 3,
+      "text": "In this team, I can ask for help without being judged as incompetent.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 4,
+      "text": "In this team, I can disagree with a proposed decision without fear of rejection.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 5,
+      "text": "In this team, admitting that I am unsure about something would lower others' respect for me.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 6,
+      "text": "In this team, questioning an established practice could make me a target of ridicule.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 7,
+      "text": "In this team, I would risk being excluded if I expressed a view that others disliked.",
+      "direction": "negative"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "experiment": "AI-generated psychological safety measures — six-cell Stage 1 prototype",
+  "source_file": "Generated items.docx",
+  "disposition": "Extracted from manually recorded text, not a direct API capture",
+  "conditions": [
+    {
+      "condition_id": "P1-A0",
+      "expected_items": 7,
+      "observed_items": 7,
+      "existing_items_supplied": false,
+      "prompt_record_in_source": true,
+      "model_id": null,
+      "model_snapshot": null,
+      "generation_timestamp_utc": null,
+      "request_id": null,
+      "temperature": null,
+      "seed": null,
+      "raw_api_response_available": false
+    },
+    {
+      "condition_id": "P1-A1",
+      "expected_items": 7,
+      "observed_items": 7,
+      "existing_items_supplied": true,
+      "prompt_record_in_source": true,
+      "model_id": null,
+      "model_snapshot": null,
+      "generation_timestamp_utc": null,
+      "request_id": null,
+      "temperature": null,
+      "seed": null,
+      "raw_api_response_available": false
+    },
+    {
+      "condition_id": "P2-A0",
+      "expected_items": 7,
+      "observed_items": 7,
+      "existing_items_supplied": false,
+      "prompt_record_in_source": true,
+      "model_id": null,
+      "model_snapshot": null,
+      "generation_timestamp_utc": null,
+      "request_id": null,
+      "temperature": null,
+      "seed": null,
+      "raw_api_response_available": false
+    },
+    {
+      "condition_id": "P2-A1",
+      "expected_items": 7,
+      "observed_items": 7,
+      "existing_items_supplied": true,
+      "prompt_record_in_source": true,
+      "model_id": null,
+      "model_snapshot": null,
+      "generation_timestamp_utc": null,
+      "request_id": null,
+      "temperature": null,
+      "seed": null,
+      "raw_api_response_available": false
+    },
+    {
+      "condition_id": "P3-A0",
+      "expected_items": 7,
+      "observed_items": 7,
+      "existing_items_supplied": false,
+      "prompt_record_in_source": true,
+      "model_id": null,
+      "model_snapshot": null,
+      "generation_timestamp_utc": null,
+      "request_id": null,
+      "temperature": null,
+      "seed": null,
+      "raw_api_response_available": false
+    },
+    {
+      "condition_id": "P3-A1",
+      "expected_items": 7,
+      "observed_items": 7,
+      "existing_items_supplied": true,
+      "prompt_record_in_source": false,
+      "model_id": null,
+      "model_snapshot": null,
+      "generation_timestamp_utc": null,
+      "request_id": null,
+      "temperature": null,
+      "seed": null,
+      "raw_api_response_available": false
+    }
+  ]
+}

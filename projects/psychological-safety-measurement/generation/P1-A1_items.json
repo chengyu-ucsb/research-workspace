@@ -1,0 +1,40 @@
+{
+  "condition_id": "P1-A1",
+  "items": [
+    {
+      "item_number": 1,
+      "text": "People on this team can admit mistakes without fear of blame.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 2,
+      "text": "People on this team feel safe raising concerns about work-related problems.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 3,
+      "text": "People on this team can ask for help without feeling judged.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 4,
+      "text": "People on this team feel comfortable suggesting new ways of doing things.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 5,
+      "text": "People on this team are criticized when they disagree with others.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 6,
+      "text": "People on this team are made to feel foolish when they ask questions.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 7,
+      "text": "People on this team risk being excluded when they express unpopular opinions.",
+      "direction": "negative"
+    }
+  ]
+}

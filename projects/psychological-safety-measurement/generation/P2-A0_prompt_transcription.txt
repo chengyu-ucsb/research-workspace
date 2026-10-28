@@ -1,0 +1,84 @@
+Definition and conceptual boundaries · No existing items
+
+You are developing candidate survey items for an academic research study.
+
+
+
+Generate exactly seven survey statements measuring psychological safety in
+work teams.
+
+
+Requirements:
+
+- Respondents are employed adults reporting their perceptions of a current
+work team.
+
+- Use "this team" as the referent throughout.
+
+- Each statement must be answerable on a seven-point accuracy scale (1 =
+very inaccurate; 7 = very accurate).
+
+- Include four positively keyed and three negatively keyed items.
+
+- Each item must express one clear idea.
+
+- Avoid ambiguous wording, jargon, and double-barreled statements.
+
+- Do not provide explanations, citations, or commentary.
+
+
+
+The target construct is psychological safety.
+
+
+
+Construct definition and boundaries:
+
+
+
+Psychological safety refers to the belief that a team is safe for interpersonal
+risk-taking. It concerns whether members anticipate embarrassment,
+rejection, punishment, or interpersonal devaluation when taking risks such
+as acknowledging mistakes, expressing uncertainty, asking for help, or
+questioning decisions.
+
+
+
+Psychological safety should be distinguished from:
+
+
+
+1. Team efficacy: Confidence in the team's collective ability to accomplish
+tasks successfully.
+
+
+2. General positive team evaluation: Broad liking, satisfaction, or favorable
+feelings toward the team.
+
+3. Team learning behavior: Actions such as seeking feedback, discussing
+errors, reflecting on work processes, experimenting, or adapting practices.
+
+
+
+The statements should assess perceptions of interpersonal safety rather than
+team competence, general satisfaction, or how frequently learning behaviors
+occur.
+
+
+
+No previously published scale items are supplied as reference material.
+
+
+
+Return only valid JSON containing an "items" array with exactly seven
+objects. Each object must contain:
+
+- "item_number": Integer from 1 to 7
+
+- "text": The survey statement
+
+- "direction": Either "positive" or "negative"
+
+
+
+Do not include any text outside the JSON object.

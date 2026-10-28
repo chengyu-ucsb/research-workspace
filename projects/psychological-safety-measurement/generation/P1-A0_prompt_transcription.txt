@@ -1,0 +1,52 @@
+Construct name only · No existing items
+
+You are developing candidate survey items for an academic research study.
+
+
+
+Generate exactly seven survey statements measuring psychological safety in
+work teams.
+
+
+
+Requirements:
+
+- Respondents are employed adults reporting their perceptions of a current
+work team.
+
+- Use "this team" as the referent throughout.
+
+- Each statement must be answerable on a seven-point accuracy scale (1 =
+very inaccurate; 7 = very accurate).
+
+- Include four positively keyed and three negatively keyed items.
+
+- Each item must express one clear idea.
+
+- Avoid ambiguous wording, jargon, and double-barreled statements.
+
+- Do not provide explanations, citations, or commentary.
+
+
+
+The target construct is psychological safety.
+
+
+
+No previously published scale items are supplied as reference material.
+
+
+
+Return only valid JSON containing an "items" array with exactly seven
+objects. Each object must contain:
+
+
+- "item_number": Integer from 1 to 7
+
+- "text": The survey statement
+
+- "direction": Either "positive" or "negative"
+
+
+
+Do not include any text outside the JSON object.

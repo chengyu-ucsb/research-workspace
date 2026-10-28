@@ -1,0 +1,72 @@
+Construct name only · Edmondson items provided
+
+You are developing candidate survey items for an academic research study.
+
+
+
+Generate exactly seven survey statements measuring psychological safety in
+work teams.
+
+
+
+Requirements:
+
+- Respondents are employed adults reporting their perceptions of a current
+work team.
+
+- Use "this team" as the referent throughout.
+
+
+- Each statement must be answerable on a seven-point accuracy scale (1 =
+very inaccurate; 7 = very accurate).
+
+- Include four positively keyed and three negatively keyed items.
+
+- Each item must express one clear idea.
+
+- Avoid ambiguous wording, jargon, and double-barreled statements.
+
+- Do not provide explanations, citations, or commentary.
+
+
+
+The target construct is psychological safety.
+
+
+
+The following seven items are from Edmondson's (1999) original team
+psychological safety measure. Use them as reference material when
+developing the requested survey statements, but do not copy any item
+verbatim.
+
+
+
+1. If you make a mistake on this team, it is often held against you.
+
+2. Members of this team are able to bring up problems and tough issues.
+
+3. People on this team sometimes reject others for being different.
+
+4. It is safe to take a risk on this team.
+
+5. It is difficult to ask other members of this team for help.
+
+6. No one on this team would deliberately act in a way that undermines my
+efforts.
+
+7. Working with members of this team, my unique skills and talents are
+valued and utilized.
+
+
+Return only valid JSON containing an "items" array with exactly seven
+objects. Each object must contain:
+
+- "item_number": Integer from 1 to 7
+
+- "text": The survey statement
+
+- "direction": Either "positive" or "negative"
+
+
+
+Do not include any text outside the JSON object.

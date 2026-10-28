@@ -1,0 +1,40 @@
+{
+  "condition_id": "P1-A0",
+  "items": [
+    {
+      "item_number": 1,
+      "text": "I feel safe raising concerns in this team.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 2,
+      "text": "I hide my mistakes from others in this team to avoid blame.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 3,
+      "text": "I can ask questions in this team without feeling embarrassed.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 4,
+      "text": "I hesitate to disagree with others in this team because I fear their reactions.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 5,
+      "text": "I feel comfortable sharing unusual ideas in this team.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 6,
+      "text": "I worry that asking for help in this team will make others think less of me.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 7,
+      "text": "I feel comfortable admitting that I do not know something in this team.",
+      "direction": "positive"
+    }
+  ]
+}

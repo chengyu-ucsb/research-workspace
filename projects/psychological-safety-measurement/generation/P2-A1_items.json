@@ -1,0 +1,40 @@
+{
+  "condition_id": "P2-A1",
+  "items": [
+    {
+      "item_number": 1,
+      "text": "On this team, I can acknowledge a mistake without fear of embarrassment.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 2,
+      "text": "On this team, I can ask for help without others thinking less of my abilities.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 3,
+      "text": "On this team, I can raise concerns without being judged as troublesome.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 4,
+      "text": "On this team, I can question a decision without being punished for it.",
+      "direction": "positive"
+    },
+    {
+      "item_number": 5,
+      "text": "On this team, admitting uncertainty would cause others to lose respect for me.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 6,
+      "text": "On this team, expressing an unpopular opinion could lead to rejection by others.",
+      "direction": "negative"
+    },
+    {
+      "item_number": 7,
+      "text": "On this team, asking a basic question could lead to ridicule.",
+      "direction": "negative"
+    }
+  ]
+}
