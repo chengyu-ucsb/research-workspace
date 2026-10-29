@@ -1,7 +1,5 @@
 # Multi-scale design: simulation and power analysis
 
-Author: Chengyu Fang
-
 **Everything on this page is simulated from hypothetical parameters.** No participant data were collected, and no properties of the actual AI-generated scales were estimated. The simulation checks that the Stage 2 analysis works and how many respondents it needs.
 
 ## What the design estimates
@@ -51,7 +49,7 @@ Rejection rates at alpha = .05. "Heterogeneity test" is the Q test that tau = 0.
 | high | 750 | 20 | 4 | 150 | .090 | 1.00 | .99 | .98 |
 | high | 1000 | 20 | 4 | 200 | .093 | .99 | 1.00 | .97 |
 
-The full grid, including the null and low pools for every design, is in `results/multiscale/monte_carlo.csv`.
+The full grid, including the null and low pools for every design, is in `monte_carlo.csv` in this folder.
 
 What the grid shows:
 
@@ -74,7 +72,7 @@ One simulated study from the high pool (N = 750, K = 20, m = 4), chosen to show 
 - Overlap slope: 0.68 on the *z* scale per unit of the overlap index (SE 0.11, *t*(18) = 6.02, p < .001)
 - Edmondson-like scale: r = .51, at the 19th percentile of the AI distribution; May-like scale: r = .44, at the 6th percentile
 
-![Simulated distribution](multiscale/demo_distribution.png)
+![Simulated distribution](demo_distribution.png)
 
 In this hypothetical pool, AI scales that borrow learning content correlate more strongly with learning than the established scales do. Whether the real pool behaves this way is the empirical question for Stage 2.
 
@@ -89,10 +87,10 @@ In this hypothetical pool, AI scales that borrow learning content correlate more
 
 ```bash
 python -m pip install -r requirements.txt
-python simulation/multiscale_sim.py --out results/multiscale --reps 400 --boot 500
+python simulation/multiscale_sim.py --out results --reps 400 --boot 500
 ```
 
-The run takes about two and a half minutes and writes `pool_scenarios.json`, `monte_carlo.csv`, `demo_scales.csv`, `demo_results.json`, and `demo_distribution.png` to `results/multiscale/`. All random draws come from a fixed seed (20261029).
+The run takes about two and a half minutes and writes `pool_scenarios.json`, `monte_carlo.csv`, `demo_scales.csv`, `demo_results.json`, and `demo_distribution.png` to `results/`. Run it from the `multiscale-design` folder. All random draws come from a fixed seed (20261029).
 
 ## References
 

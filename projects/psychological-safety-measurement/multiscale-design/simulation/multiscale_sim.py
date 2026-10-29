@@ -2,8 +2,6 @@
 """Multi-scale design: how much does the psychological safety-team learning
 correlation vary across AI-generated measures of psychological safety?
 
-Author: Chengyu Fang
-
 This script simulates the Stage 2 design in which each respondent answers the
 established psychological safety scales (Edmondson-like and May-like reference
 forms), a team learning behavior scale, and m AI-generated scales drawn at
@@ -24,7 +22,8 @@ how much power the design has for realistic amounts of heterogeneity.
 Every generating parameter below is a hypothetical researcher assumption. No
 participant data and no properties of the actual AI-generated item sets are
 used. Responses are 7-point ordinal, produced by thresholding continuous
-propensities at standard-normal quantiles (as in synthetic_demo.py).
+propensities at standard-normal quantiles (as in the six-condition prototype's
+synthetic_demo.py).
 
 Item model. Each psychological safety item has communality lambda^2. Its common
 part points in a direction that mixes latent safety P with latent learning L:
@@ -508,7 +507,7 @@ def plot_demo(rows, demo, path):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('--out', type=Path, default=Path('results/multiscale'))
+    ap.add_argument('--out', type=Path, default=Path('results'))
     ap.add_argument('--reps', type=int, default=400, help='Monte Carlo replications per cell')
     ap.add_argument('--boot', type=int, default=500, help='bootstrap replications in the demonstration')
     args = ap.parse_args()
