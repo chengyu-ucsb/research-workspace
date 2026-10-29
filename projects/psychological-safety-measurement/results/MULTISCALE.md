@@ -29,7 +29,7 @@ The latent correlation between safety and learning (.56) was set so that the Edm
 
 ## Benchmark from the literature
 
-Frazier et al. (2017, Table 1) report, for psychological safety with learning behavior at the individual level, *k* = 15, *N* = 4,648, mean observed *r* = .48, and 7.21% of the variance in observed correlations accounted for by artifacts. They do not report SD-rho or a credibility interval. Treating the artifact variance as sampling error alone implies a between-study SD of about **.16** in observed correlations. This is a rough reconstruction, and it is a floor more than an estimate, since other artifacts would raise it. A measure-dependent tau of .05 corresponds to about 10% of that between-study variance; a tau of .09 corresponds to about a third.
+Frazier et al. (2017, Table 1) report, for psychological safety with learning behavior at the individual level, *k* = 15 correlations, *N* = 4,648, mean observed *r* = .48, and 7.21% of the variance in observed correlations accounted for by sampling error (the table note's definition of %-Acc). They do not report SD-rho or a credibility interval. Applying the Hunter–Schmidt sampling-error variance at the average study size (about 310) gives a residual SD of about **.16** in observed correlations once sampling error is removed. The reconstruction is approximate because it uses the average study size. The residual also still contains differences in reliability across studies, which is equally true of tau in our design, so the two are on the same footing. A measure-dependent tau of .05 corresponds to about 10% of that between-study variance; a tau of .09 corresponds to about a third.
 
 ## Monte Carlo results (400 replications per cell)
 

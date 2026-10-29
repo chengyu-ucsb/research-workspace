@@ -320,8 +320,10 @@ def bootstrap_tau(study, B, rng):
 def frazier_benchmark():
     """Approximate between-study SD of observed r implied by Frazier et al. (2017).
 
-    Treats the artifact variance as sampling error only, which makes this a
-    rough floor for the residual SD on the observed-r metric.
+    Frazier et al. define %-Acc as the share of variance accounted for by
+    sampling error (Table 1 note), so the residual SD on the observed-r metric
+    follows from the Hunter-Schmidt sampling-error variance at the average
+    study size. Approximate, because it uses the average study size.
     """
     n_bar = FRAZIER['N'] / FRAZIER['k']
     samp_var = (1 - FRAZIER['r_bar'] ** 2) ** 2 / (n_bar - 1)
