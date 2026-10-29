@@ -90,7 +90,7 @@ python -m pip install -r requirements.txt
 python simulation/multiscale_sim.py --out results --reps 400 --boot 500
 ```
 
-The run takes about two and a half minutes and writes `pool_scenarios.json`, `monte_carlo.csv`, `demo_scales.csv`, `demo_results.json`, and `demo_distribution.png` to `results/`. Run it from the `multiscale-design` folder. All random draws come from a fixed seed (20261029).
+The run takes about two and a half minutes and writes `pool_scenarios.json`, `monte_carlo.csv`, `demo_scales.csv`, `demo_results.json`, `demo_distribution.png`, and the technical appendix exhibits `table_A1.csv` and `figure_A1.png` to `results/`. Run it from the `multiscale-design` folder. All random draws come from a fixed seed (20261029), so a rerun reproduces every file in `results/` exactly.
 
 ## References
 

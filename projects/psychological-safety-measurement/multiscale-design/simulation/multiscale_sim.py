@@ -444,13 +444,38 @@ def run(out, reps, boot):
         wr.writeheader()
         wr.writerows(scale_rows)
     with open(out / 'demo_results.json', 'w') as f:
-        json.dump(dict(demo=demo, frazier_benchmark=bench, checks=checks, seed=SEED,
-                       runtime_seconds=round(time.time() - t0, 1)), f, indent=2)
+        json.dump(dict(demo=demo, frazier_benchmark=bench, checks=checks, seed=SEED), f, indent=2)
+    write_table_a1(mc_rows, out / 'table_A1.csv')
     plot_demo(scale_rows, demo, out / 'demo_distribution.png')
+    plot_demo(scale_rows, demo, out / 'figure_A1.png', titled=False)
     print(json.dumps(dict(demo=demo, frazier_benchmark=bench, checks=checks), indent=2))
+    print(f'runtime {time.time() - t0:.1f} s')
 
 
-def plot_demo(rows, demo, path):
+TABLE_A1_CELLS = [('none', 750), ('none', 1000), ('low', 750), ('low', 1000), ('medium', 500), ('medium', 750),
+                  ('medium', 1000), ('high', 500), ('high', 750), ('high', 1000)]
+
+
+def write_table_a1(mc_rows, path):
+    """Table A1 of the technical appendix: K = 20, m = 4, rounded half up."""
+    from decimal import Decimal, ROUND_HALF_UP
+
+    def fmt(x, nd):
+        txt = f"{Decimal(str(x)).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP):.{nd}f}"
+        return txt[1:] if txt.startswith('0') else txt
+
+    rows = {(r['scenario'], r['N']): r for r in mc_rows if r['K'] == 20 and r['m'] == 4}
+    with open(path, 'w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['Pool', 'True tau', 'N', 'Mean tau estimate', 'Heterogeneity test', 'Overlap test', 'Tau CI coverage'])
+        for name, n in TABLE_A1_CELLS:
+            r = rows[(name, n)]
+            wr.writerow([name.capitalize(), fmt(r['true_tau_r'], 3), f'{n:,}', fmt(r['mean_tau_hat_r'], 3),
+                         fmt(r['rejection_rate_heterogeneity_Q'], 2), fmt(r['rejection_rate_overlap_slope'], 2),
+                         fmt(r['tau_ci95_coverage'], 2)])
+
+
+def plot_demo(rows, demo, path, titled=True):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -493,14 +518,15 @@ def plot_demo(rows, demo, path):
 
     ax.text(mu, len(rows) - .2, f'  pooled r = {mu:.2f}', fontsize=7.5, color=ink2, va='bottom')
     ax.text(hi80, -0.9, ' 80% prediction interval\n across AI scales', fontsize=7, color=ink2, va='bottom')
-    fig.suptitle('Simulated: correlation with team learning across 20 AI-generated scales',
-                 x=.02, ha='left', fontsize=10.5, color=ink, y=.985)
-    ax.set_title(f"Hypothetical parameters, no real data. N = {demo['N']}; each respondent answers {demo['m']} of "
-                 f"{demo['K']} AI scales.\nEstimated tau = {demo['tau_r']:.3f} (true value in the simulated pool "
-                 f"{demo['true_pool_tau_r']:.3f}).",
-                 loc='left', fontsize=7.5, color=ink2, pad=8)
+    if titled:
+        fig.suptitle('Simulated: correlation with team learning across 20 AI-generated scales',
+                     x=.02, ha='left', fontsize=10.5, color=ink, y=.985)
+        ax.set_title(f"Hypothetical parameters, no real data. N = {demo['N']}; each respondent answers {demo['m']} of "
+                     f"{demo['K']} AI scales.\nEstimated tau = {demo['tau_r']:.3f} (true value in the simulated pool "
+                     f"{demo['true_pool_tau_r']:.3f}).",
+                     loc='left', fontsize=7.5, color=ink2, pad=8)
     fig.tight_layout()
-    fig.savefig(path, facecolor=surface)
+    fig.savefig(path, facecolor=surface, metadata={'Software': None})
     plt.close(fig)
 
 
