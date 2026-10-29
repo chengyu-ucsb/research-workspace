@@ -38,6 +38,14 @@ Running `python simulation/synthetic_demo.py --out results` deterministically re
 
 The observed numerical outputs are one realization of a known simulation design. A bootstrap within a single sample measures sampling uncertainty; it does not substitute for a repeated Monte Carlo methods study.
 
+## Multi-scale design (RQ1 and RQ2)
+
+The primary Stage 2 analysis treats the AI-generated measure as a sampled factor. About 1,000 respondents each answer both established psychological safety scales, the team learning behavior and team efficacy scales, and four AI-generated scales assigned at random from 20 drawn from the logged generation pool with the seeded rule. Each AI scale is thus answered by about 200 respondents.
+
+For each AI scale, the correlation with team learning is computed and transformed to Fisher *z*. A random-effects model estimated by REML gives the pooled correlation and tau, the standard deviation of true correlations across AI-generated measures (RQ1). The tau interval uses the Q-profile method; the pooled correlation uses a respondent-level bootstrap, which respects the dependence created when respondents answer several scales. The established scales are located within the estimated distribution. For RQ2, a mixed-effects meta-regression with a Knapp–Hartung test relates each scale's correlation to scale-level features scored from item text before data collection: content coverage, referent (team or respondent), and semantic overlap with the team learning items.
+
+`simulation/multiscale_sim.py` implements this analysis on simulated responses and runs a Monte Carlo study of its error rates and power (`results/MULTISCALE.md`). With parallel scales, the heterogeneity test rejects in 1% to 3% of replications and the overlap slope test in about 3% to 7%. With 1,000 respondents, the design detects measure-dependent variation of tau = .09 in nearly every replication and tau = .05 in about 70%. A rough reconstruction from Frazier et al. (2017, Table 1) puts the between-study SD of individual-level psychological safety–learning correlations at about .16, so these values correspond to roughly a third and a tenth of the literature's between-study variance.
+
 ## Planned empirical extension
 
 The full study would field established psychological safety, team efficacy, team learning, and exploratory general-evaluation items with selected AI-generated scales in a within-person or incomplete-block design. Randomized block order would control order effects. Primary analyses would use paired scale-dependent associations, independent content ratings, reliability and discriminant-validity diagnostics, and ordinal latent-factor analyses. Established human scales must be verified for construct referent, wording, response format, and common lineage; shortened Edmondson variants are not independent human-developed scale families. A later transcript-based analysis could examine disclosure, others' responses, and subsequent participation, but should not label text scores as shared team psychological safety without external validation.
@@ -49,6 +57,8 @@ Clark, L. A., & Watson, D. (2019). Constructing validity: New developments in cr
 Edmondson, A. (1999). Psychological safety and learning behavior in work teams. *Administrative Science Quarterly, 44*(2), 350–383. https://doi.org/10.2307/2666999
 
 Flake, J. K., & Fried, E. I. (2020). Measurement schmeasurement: Questionable measurement practices and how to avoid them. *Advances in Methods and Practices in Psychological Science, 3*(4), 456–465. https://doi.org/10.1177/2515245920952393
+
+Frazier, M. L., Fainshmidt, S., Klinger, R. L., Pezeshkan, A., & Vracheva, V. (2017). Psychological safety: A meta-analytic review and extension. *Personnel Psychology, 70*(1), 113–165. https://doi.org/10.1111/peps.12183
 
 Morris, T. P., White, I. R., & Crowther, M. J. (2019). Using simulation studies to evaluate statistical methods. *Statistics in Medicine, 38*(11), 2074–2102. https://doi.org/10.1002/sim.8086
 
